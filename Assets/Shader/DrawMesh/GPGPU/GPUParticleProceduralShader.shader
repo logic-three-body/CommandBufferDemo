@@ -94,8 +94,8 @@ Shader "Unlit/GPUParticleProceduralShader"
 
             float4 LitPassFragment(Varyings input) : SV_TARGET
             {
-                UNITY_SETUP_INSTANCE_ID(input);
-                return float4(input.texcoord.xy, 0.0, 1.0f);
+                UNITY_SETUP_INSTANCE_ID(input);            
+                return float4(input.texcoord.xy, 0.0f, 1.0f);
             }
 
             ENDHLSL

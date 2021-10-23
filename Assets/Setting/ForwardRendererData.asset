@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6005a86523bc2c4b8001b4b9454ebb2, type: 3}
   m_Name: RenderInstancesIndirectPassFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   GPUComputeShader: {fileID: 7200000, guid: e7e17e831f661994c9d963f1f102bda7, type: 3}
   GPUProceduralCS: {fileID: 7200000, guid: c1f345a3f7dc062488878ccd9dcc117b, type: 3}
   InstanceMaterial: {fileID: 2100000, guid: 8c8dbaf9657d12647a65037c91f8893a, type: 2}
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b74a777e00fed47a2a0e40bc88c985, type: 3}
   m_Name: NewRenderObjectsFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   Event: 300
   m_RenderQueueType: 0
   m_LayerMask:
@@ -125,11 +125,11 @@ MonoBehaviour:
     m_Bits: 16
   PassNames:
   - m_CustomLightMode
-  override_Material: {fileID: 2100000, guid: 8a3923cda8e499f4e8aecfc17a7fd167, type: 2}
+  override_Material: {fileID: 2100000, guid: f29bfcc2381b8cc42913480e05695714, type: 2}
   overrideMaterialPassIndex: 0
   overriderDepthState: 0
   enableWrite: 1
-  depthCompareFunction: 4
+  depthCompareFunction: 2
   stencilSettings:
     overrideStencilState: 0
     stencilReference: 0
