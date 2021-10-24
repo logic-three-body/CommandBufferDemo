@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   Event: 300
-  m_RenderQueueType: 0
+  m_RenderQueueType: 1
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -127,9 +127,9 @@ MonoBehaviour:
   - m_CustomLightMode
   override_Material: {fileID: 2100000, guid: f29bfcc2381b8cc42913480e05695714, type: 2}
   overrideMaterialPassIndex: 0
-  overriderDepthState: 0
+  overriderDepthState: 1
   enableWrite: 1
-  depthCompareFunction: 2
+  depthCompareFunction: 4
   stencilSettings:
     overrideStencilState: 0
     stencilReference: 0
