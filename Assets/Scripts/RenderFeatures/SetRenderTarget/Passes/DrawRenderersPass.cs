@@ -96,6 +96,9 @@ class DrawRenderersPass : ScriptableRenderPass
     // Here you can implement the rendering logic.
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
+        //Test0(context,ref renderingData);
+        //Test1(context,ref renderingData);
+        //Test2(context,ref renderingData);
         Test3(context, ref renderingData);
     }
 
@@ -120,6 +123,7 @@ class DrawRenderersPass : ScriptableRenderPass
         //
         //等价于
         //m_DrawingSetting = CreateDrawingSettings(m_ShaderTagIdList, ref renderingData, sortingCriteria);
+                                               //使用哪个pass绘制
         m_DrawingSetting = new DrawingSettings(m_ShaderTagIdList[0], sortingSettings)
         {
             perObjectData = renderingData.perObjectData,
@@ -133,8 +137,10 @@ class DrawRenderersPass : ScriptableRenderPass
             m_DrawingSetting.SetShaderPassName(i, m_ShaderTagIdList[i]);
         }
         //Debug.Log(((string)m_DrawingSetting.GetShaderPassName(0)));
+        ///重写对应pass,使用重写材质的shader pass
         m_DrawingSetting.overrideMaterial = overrideMaterial;
         m_DrawingSetting.overrideMaterialPassIndex = overrideMaterialPassIndex;
+        //Debug.Log(((string)m_DrawingSetting.GetShaderPassName(0)));
 
         CommandBuffer commandBuffer = CommandBufferPool.Get();
         using (new ProfilingScope(commandBuffer, m_ProfilingSampler))
@@ -444,7 +450,9 @@ renderingData.cameraData.defaultOpaqueSortFlags;
         ShaderTagId tagName = new ShaderTagId("LightMode");
         bool isPassTagName = true;
 
-        ShaderTagId renderType = new ShaderTagId("UniversalForward");
+        string lightmode = "UniversalForward";
+       // lightmode = "DepthNormals";
+        ShaderTagId renderType = new ShaderTagId(lightmode);
         ShaderTagId fallBack = new ShaderTagId();
         NativeArray<ShaderTagId> tagValues = new NativeArray<ShaderTagId>(2, Allocator.Temp);
         tagValues[0] = renderType;
