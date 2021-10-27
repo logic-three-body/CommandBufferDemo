@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d817c712172d0034d9931cc3c69c8535, type: 3}
   m_Name: RenderTextureRequest
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   Event: 350
 --- !u!114 &-2817956305221984455
 MonoBehaviour:
@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Name: NewRenderObjectsFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  Event: 300
-  m_RenderQueueType: 1
+  Event: 400
+  m_RenderQueueType: 0
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -125,7 +125,7 @@ MonoBehaviour:
     m_Bits: 16
   PassNames:
   - m_CustomLightMode
-  override_Material: {fileID: 2100000, guid: f29bfcc2381b8cc42913480e05695714, type: 2}
+  override_Material: {fileID: 2100000, guid: 8a3923cda8e499f4e8aecfc17a7fd167, type: 2}
   overrideMaterialPassIndex: 0
   overriderDepthState: 1
   enableWrite: 1

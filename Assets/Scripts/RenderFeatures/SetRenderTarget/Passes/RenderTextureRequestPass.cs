@@ -40,7 +40,10 @@ class RenderTextureRequestPass : ScriptableRenderPass
     }
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
     {
-        RTRequestTest0_0(cmd, ref renderingData);
+       // RTRequestTest0_0(cmd, ref renderingData);
+       // RTRequestTest0_1(cmd, ref renderingData);
+       // RTRequestTest0_2(cmd, ref renderingData);
+        RTRequestTest0_3(cmd, ref renderingData);
     }
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
