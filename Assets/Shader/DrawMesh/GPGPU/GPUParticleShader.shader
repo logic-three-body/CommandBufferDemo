@@ -15,7 +15,7 @@ Shader "Unlit/GPUParticleShader"
             float4 uv;
         };
 
-        StructuredBuffer<float3> _Positions;
+        StructuredBuffer<float3> _Positions;//调用[GPUParticleCS]compute shader计算的数组
         float _Step;
         struct Attributes
         {

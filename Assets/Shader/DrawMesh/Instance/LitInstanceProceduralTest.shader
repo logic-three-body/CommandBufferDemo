@@ -58,16 +58,19 @@ Shader "Unlit/LitInstanceProceduralTest"
 
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
-            //#pragma multi_compile _ UNITY_INSTANCED_LIGHTMAPSTS
+            #pragma multi_compile _ UNITY_INSTANCED_LIGHTMAPSTS
             #pragma multi_compile _ LOD_FADE_CROSSFADE
 
             #pragma multi_compile_fog
             #pragma multi_compile_instancing
 
-            //#pragma instancing_options nolightmap//使用实例化时获取不了LightmapST[Scale/Offset].
-            //#pragma instancing_options nolightprobe//使用实例化时获取不了Light Probe values(包括occlusion data).
+            //#pragma instancing_options nolightmap
+            //使用实例化时获取不了LightmapST[Scale/Offset].
+            //#pragma instancing_options nolightprobe
+            //使用实例化时获取不了Light Probe values(包括occlusion data).
             
-            //#pragma instancing_options nomatrices//没有M矩阵变换
+            //#pragma instancing_options nomatrices
+            //没有M矩阵变换
             //#pragma instancing_options force_same_maxcount_for_gl
             //#pragma instancing_options maxcount:50
             //#pragma instancing_options forcemaxcount:50
@@ -84,7 +87,7 @@ Shader "Unlit/LitInstanceProceduralTest"
                     unity_ObjectToWorld = 0.0;
                     unity_ObjectToWorld._m03_m13_m23_m33 = float4(position, 1.0);
 
-                    unity_ObjectToWorld._m00_m11_m22 = float3(1, 1, 1);
+                    unity_ObjectToWorld._m00_m11_m22 = float3(2, 1, 1);
                 #endif
             }
 

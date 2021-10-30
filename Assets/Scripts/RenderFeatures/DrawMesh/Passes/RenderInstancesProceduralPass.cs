@@ -66,13 +66,17 @@ public class RenderInstancesProceduralPass : ScriptableRenderPass
             m_MatBlock.SetBuffer(positionId, particleBuffer);
             m_MatBlock.SetFloat(stepId, step);
             //Instance绘制
-            //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Points,((int)resolution) * ((int)resolution) * 4, 1, m_MatBlock);
+            //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Points, ((int)resolution) * ((int)resolution) * 4, 1, m_MatBlock);
             //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Lines, ((int)resolution) * ((int)resolution) * 4, 1, m_MatBlock);
-            //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.LineStrip, ((int)resolution) * ((int)resolution)* 4, 1, m_MatBlock);
-            //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Triangles, ((int)resolution) * ((int)resolution)* 4, 1, m_MatBlock);
-            commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Quads, ((int)resolution) * ((int)resolution) * 4, 1, m_MatBlock);
+            //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.LineStrip, ((int)resolution) * ((int)resolution) * 4, 1, m_MatBlock);
+            //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Triangles, ((int)resolution) * ((int)resolution) * 4, 1, m_MatBlock);
+            //commandBuffer.DrawProcedural(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Quads, ((int)resolution) * ((int)resolution) * 4, 1, m_MatBlock);
 
+            //commandBuffer.DrawProceduralIndirect(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Quads, bufferWithArgs, 0, m_MatBlock);//Quad会报错,Quad不支持使用BufferArgs控制
             //commandBuffer.DrawProceduralIndirect(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Lines, bufferWithArgs, 0, m_MatBlock);//Quad会报错,Quad不支持使用BufferArgs控制
+            //commandBuffer.DrawProceduralIndirect(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.LineStrip, bufferWithArgs, 0, m_MatBlock);//Quad会报错,Quad不支持使用BufferArgs控制
+            //commandBuffer.DrawProceduralIndirect(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Points, bufferWithArgs, 0, m_MatBlock);//Quad会报错,Quad不支持使用BufferArgs控制
+            commandBuffer.DrawProceduralIndirect(Matrix4x4.identity, instanceMaterial, 0, MeshTopology.Triangles, bufferWithArgs, 0, m_MatBlock);//Quad会报错,Quad不支持使用BufferArgs控制
         }
 
         context.ExecuteCommandBuffer(commandBuffer);

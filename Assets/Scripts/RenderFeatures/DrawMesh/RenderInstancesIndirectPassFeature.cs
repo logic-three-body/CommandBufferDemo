@@ -30,8 +30,8 @@ public class RenderInstancesIndirectPassFeature : ScriptableRendererFeature
         // bufferWithArgs_Indirect.Release();
         // bufferWithArgs_Procedural.Release();
 
-        resolution = (uint)(resolution / 16) * 16;
-        SetUpIndirectPass();
+        resolution = (uint)(resolution / 16) * 16;//限制为16倍数
+        SetUpIndirectPass();//申请compute buffer
         SetUpProceduralPass();
     }
 
@@ -39,12 +39,12 @@ public class RenderInstancesIndirectPassFeature : ScriptableRendererFeature
     {
         if (isActive)
         {
-            if (positionBuffer == null)
+            if (positionBuffer == null)                                         //3*float(4 bytes)            
                 positionBuffer = new ComputeBuffer(MaxResolution * MaxResolution, 3 * 4);
             if (bufferWithArgs_Indirect == null)
                 bufferWithArgs_Indirect = new ComputeBuffer(5, 4, ComputeBufferType.IndirectArguments);
             else
-            if (InstanceMesh != null)
+            if (InstanceMesh != null)                           
                 bufferWithArgs_Indirect.SetData(new uint[] { InstanceMesh.GetIndexCount(0), resolution * resolution, 0, 0, 0 });
         }
 
@@ -62,7 +62,7 @@ public class RenderInstancesIndirectPassFeature : ScriptableRendererFeature
             if (bufferWithArgs_Procedural == null)
                 bufferWithArgs_Procedural = new ComputeBuffer(5, 4, ComputeBufferType.IndirectArguments);
             else
-            if (InstanceMesh != null)
+            if (InstanceMesh != null)                         
                 bufferWithArgs_Procedural.SetData(new uint[] { resolution * resolution * 4, 5, 0, 0, 0 });
         }
 

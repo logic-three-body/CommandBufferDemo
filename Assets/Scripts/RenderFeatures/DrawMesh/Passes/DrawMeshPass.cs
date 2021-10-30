@@ -53,31 +53,34 @@ class DrawMeshPass : ScriptableRenderPass
         m_ProfilingSampler = new ProfilingSampler(m_ProfilerTag);
         this.renderPassEvent = m_DrawMeshPassSetting.passEvent;
 
-        DrawMeshInstanced_Setup();
+        // DrawMeshInstanced_Setup();
+        DrawLitMeshInstanced_Setup();
     }
 
     public void DrawMeshInstanced_Setup()
     {
         //在一个半径为10倍大小的单位球之内随机生成
-        // for (int i = 0; i < matrices.Length; i++)
-        // {
-        //     Vector3 position = Random.onUnitSphere * 10f;
-        //     matrices[i] =Matrix4x4.Translate(position);
-        // }
-        Vector3 pos = new Vector3();
-        int index;
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
-                for (int k = 0; k < 16; k++)
-                {
-                    pos.x = 2 * i - 7;
-                    pos.y = 2 * j - 7;
-                    pos.z = 2 * k - 15;
-                    index = 8 * 8 * k + 8 * j + i;
-                    matrices[index] = Matrix4x4.Translate(pos) * Matrix4x4.Rotate(Quaternion.Euler(Random.value * 360, Random.value * 360, Random.value * 360)) * Matrix4x4.Scale(new Vector3(Random.value, Random.value, Random.value));
-                    if (index < 1023)
-                        colors[index] = new Vector4(pos.x / 7, pos.y / 7, pos.z / 15, 1.0f);
-                }
+        for (int i = 0; i < matrices.Length; i++)
+        {
+            Vector3 position = Random.onUnitSphere * 10f;
+            matrices[i] = Matrix4x4.Translate(position);
+            if (i < 1023)//超过1023个颜色后会报错
+                colors[i] = new Vector4(position.x / 7, position.y / 7, position.z / 15, 1.0f);
+        }
+        //Vector3 pos = new Vector3();
+        //int index;
+        //for (int i = 0; i < 8; i++)
+        //    for (int j = 0; j < 8; j++)
+        //        for (int k = 0; k < 16; k++)
+        //        {
+        //            pos.x = 2 * i - 7;
+        //            pos.y = 2 * j - 7;
+        //            pos.z = 2 * k - 15;
+        //            index = 8 * 8 * k + 8 * j + i;
+        //            matrices[index] = Matrix4x4.Translate(pos) * Matrix4x4.Rotate(Quaternion.Euler(Random.value * 360, Random.value * 360, Random.value * 360)) * Matrix4x4.Scale(new Vector3(Random.value, Random.value, Random.value));
+        //            if (index < 1023)
+        //                colors[index] = new Vector4(pos.x / 7, pos.y / 7, pos.z / 15, 1.0f);
+        //        }
     }
 
     public void DrawLitMeshInstanced_Setup()
@@ -106,7 +109,10 @@ class DrawMeshPass : ScriptableRenderPass
 
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
-        DrawMeshTest(context, ref renderingData);
+        ///DrawMeshTest(context, ref renderingData);
+        ///DrawMeshInstanced(context, ref renderingData);
+        ///DrawLitMeshInstanced(context, ref renderingData);
+        DrawMeshInstancedProcedural(context, ref renderingData);
     }
 
     void DrawMeshTest(ScriptableRenderContext context, ref RenderingData renderingData)
@@ -117,7 +123,7 @@ class DrawMeshPass : ScriptableRenderPass
             if (passSetting.UnlitInstancedMaterial != null)
             {
                 MaterialPropertyBlock m_MatBlock = new MaterialPropertyBlock();
-                m_MatBlock.SetColor("_TestColor", Color.white);
+                m_MatBlock.SetColor("_TestColor", Color.red);
                 commandBuffer.DrawMesh(passSetting.m_Mesh, Matrix4x4.identity, passSetting.UnlitInstancedMaterial, 0, 0, m_MatBlock);
             }
         }
@@ -154,9 +160,9 @@ class DrawMeshPass : ScriptableRenderPass
             {
                 LightProbes.CalculateInterpolatedLightAndOcclusionProbes(passSetting.lightMapData.lightMapUVs.m_Position.ToArray(), lightProbesSH, OcclusionProbes);
 
-                passSetting.LitInstancedMaterial.EnableKeyword("LIGHTMAP_ON");//可以自己测试LightMap
-                //passSetting.LitInstancedMaterial.DisableKeyword("LIGHTMAP_ON");//可以自己测试LightProbe
-                //passSetting.LitInstancedMaterial.EnableKeyword("LOD_FADE_CROSSFADE");
+                //passSetting.LitInstancedMaterial.EnableKeyword("LIGHTMAP_ON");//可以自己测试LightMap
+                passSetting.LitInstancedMaterial.DisableKeyword("LIGHTMAP_ON");//可以自己测试LightProbe
+                passSetting.LitInstancedMaterial.EnableKeyword("LOD_FADE_CROSSFADE");
                 MaterialPropertyBlock m_MatBlock = new MaterialPropertyBlock();
                 m_MatBlock.SetTexture("unity_Lightmap", passSetting.lightMap);
                 m_MatBlock.SetVectorArray("unity_LightmapST", lightMapST);

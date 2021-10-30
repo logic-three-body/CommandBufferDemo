@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d817c712172d0034d9931cc3c69c8535, type: 3}
   m_Name: RenderTextureRequest
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   Event: 350
 --- !u!114 &-2817956305221984455
 MonoBehaviour:
@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6005a86523bc2c4b8001b4b9454ebb2, type: 3}
   m_Name: RenderInstancesIndirectPassFeature
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   GPUComputeShader: {fileID: 7200000, guid: e7e17e831f661994c9d963f1f102bda7, type: 3}
   GPUProceduralCS: {fileID: 7200000, guid: c1f345a3f7dc062488878ccd9dcc117b, type: 3}
   InstanceMaterial: {fileID: 2100000, guid: 8c8dbaf9657d12647a65037c91f8893a, type: 2}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Active: 0
   m_DrawMeshPassSetting:
     m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    passEvent: 0
+    passEvent: 600
     UnlitInstancedMaterial: {fileID: 2100000, guid: 63399c7a251972845a0ab1fd58422119, type: 2}
     LitInstancedMaterial: {fileID: 2100000, guid: 256ca29ecc31fc143812f8189b958443, type: 2}
     LitInstancedProceduralMaterial: {fileID: 2100000, guid: 4d777a3d3bbdd384a8c696c7697990b8, type: 2}
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b74a777e00fed47a2a0e40bc88c985, type: 3}
   m_Name: NewRenderObjectsFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
-  Event: 400
+  m_Active: 0
+  Event: 350
   m_RenderQueueType: 0
   m_LayerMask:
     serializedVersion: 2
@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Name: DrawAndBlitTestRendererFeature
   m_EditorClassIdentifier: 
   m_Active: 0
-  Event: 500
+  Event: 400
   material: {fileID: 2100000, guid: 15ad618d146662246a249d9ec463803b, type: 2}
-  _Hue: 0
-  _Saturation: 0
-  _Value: 0
+  _Hue: 0.46
+  _Saturation: 3.01
+  _Value: 1.27

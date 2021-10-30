@@ -13,7 +13,7 @@ Shader "Unlit/InstanceTest"
         //已经包含UnityInstancing.hlsl
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-        UNITY_INSTANCING_BUFFER_START(Props)
+        UNITY_INSTANCING_BUFFER_START(Props)  
         UNITY_DEFINE_INSTANCED_PROP(float4, _TestColor)
         UNITY_DEFINE_INSTANCED_PROP(float, _Value)
         UNITY_INSTANCING_BUFFER_END(Props)
@@ -42,17 +42,18 @@ Shader "Unlit/InstanceTest"
 
             #pragma vertex LitPassVertex
             #pragma fragment LitPassFragment
+            //支持实例化指令：
             #pragma multi_compile_instancing
-            
+            //没有M矩阵变换:
             //#pragma instancing_options nomatrices
-            //没有M矩阵变换
+            //移动平台,可以打包到手机测试
             //#pragma instancing_options force_same_maxcount_for_gl
 
-            #pragma instancing_options maxcount:512
-            #pragma instancing_options forcemaxcount:512
+            //#pragma instancing_options maxcount:512
+            #pragma instancing_options forcemaxcount:585
             //MaxCount值最大被定义为500但是你可以绘制512个[翻译:https://mp.weixin.qq.com/s/qDPfrn2Vtw4qLUpiOBCa8g][原文:https://catlikecoding.com/unity/tutorials/rendering/part-19/]
             //CBuffer只能存4096个16 btye(float)
-            //#pragma instancing_options assumeuniformscaling
+            #pragma instancing_options assumeuniformscaling
             //假定XYZ使用相同的缩放值，更改UNITY_WORLDTOOBJECTARRAY_CB的分布
             Varyings LitPassVertex(Attributes input)
             {

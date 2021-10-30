@@ -96,10 +96,10 @@ class DrawRenderersPass : ScriptableRenderPass
     // Here you can implement the rendering logic.
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
-        //Test0(context,ref renderingData);
+        Test0(context,ref renderingData);
         //Test1(context,ref renderingData);
         //Test2(context,ref renderingData);
-        Test3(context, ref renderingData);
+       // Test3(context, ref renderingData);
     }
 
     //Test0:CullingResults+DrawingSettings+FilteringSettings

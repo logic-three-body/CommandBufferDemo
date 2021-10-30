@@ -4,6 +4,8 @@
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
 RWStructuredBuffer<float3> _Positions;
+///计算出一个位置数组
+
 
 //Parameter
 uint _Resolution;

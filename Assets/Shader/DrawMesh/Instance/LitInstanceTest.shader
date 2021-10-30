@@ -57,17 +57,20 @@ Shader "Unlit/LitInstanceTest"
 
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED
             #pragma multi_compile _ LIGHTMAP_ON
-            //#pragma multi_compile _ UNITY_INSTANCED_LIGHTMAPSTS
+            #pragma multi_compile _ UNITY_INSTANCED_LIGHTMAPSTS
             #pragma multi_compile _ LOD_FADE_CROSSFADE
 
 
             #pragma multi_compile_fog
             #pragma multi_compile_instancing
 
-            //#pragma instancing_options nolightmap//使用实例化时获取不了LightmapST[Scale/Offset].
-            //#pragma instancing_options nolightprobe//使用实例化时获取不了Light Probe values(包括occlusion data).
+            //#pragma instancing_options nolightmap
+            //使用实例化时获取不了LightmapST[Scale/Offset].
+            //#pragma instancing_options nolightprobe
+            //使用实例化时获取不了Light Probe values(包括occlusion data).
             
-            //#pragma instancing_options nolodfade //默认lodfade
+            #pragma instancing_options nolodfade 
+            //默认lodfade
 
 
             Varyings LitPassVertex(Attributes input)
@@ -96,7 +99,7 @@ Shader "Unlit/LitInstanceTest"
                 //float3 ColorGI = SampleLightmap(input.lightmapUV, input.normalWS);
                 //float3 ColorGI = SampleSHPixel(input.vertexSH, input.normalWS);
                 //unity_LODFade.xxx *
-                return float4(ColorGI, 1.0);
+                return float4(unity_LODFade.xxx * ColorGI, 1.0);
             }
 
             ENDHLSL
